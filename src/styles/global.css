@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+  }
+  
+  .auth-container, .tracking-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  input, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  button {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #ff8533;
+  }
+  
+  .google-btn {
+    background-color: #4285F4;
+  }
+  
+  .google-btn:hover {
+    background-color: #357AE8;
+  }
+  
+  .slider-container {
+    margin: 20px 0;
+  }
+  
+  .share-btn {
+    background-color: #4CAF50;
+  }
+  
+  .share-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .quote {
+    margin-top: 20px;
+    font-style: italic;
+    color: #666;
+  }
