@@ -8,19 +8,35 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate('/tracking');
+    try {
+      const response = await fetch('http://localhost:5000/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem('token', data.token);
+        navigate('/tracking');
+      } else {
+        console.error(data.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   const handleGoogleLogin = (credentialResponse) => {
-    console.log(credentialResponse);
-    navigate('/tracking');
+    window.location.href = 'http://localhost:5000/auth/google';
   };
 
   return (
     <Layout>
-      <h1>Login to your account</h1>
+      <h1>Sign In to your account</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
@@ -38,7 +54,7 @@ const Login = () => {
           className="input"
           required
         />
-        <button type="submit" className="btn">Sign In</button>
+        <button type="submit" className="btn">Login</button>
       </form>
       <div style={{ marginTop: '20px' }}>
         <GoogleLogin
@@ -46,7 +62,7 @@ const Login = () => {
           onError={() => console.log('Login Failed')}
         />
       </div>
-      <p>Don't have an account? <Link to="/signup">Register</Link></p>
+      <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
     </Layout>
   );
 };
