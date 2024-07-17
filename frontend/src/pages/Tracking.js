@@ -21,7 +21,7 @@ const Tracking = () => {
   useEffect(() => {
     const fetchQuote = async () => {
       try {
-        const response = await fetch('https://api.quotable.io/random');
+        const response = await fetch('https://api.api-ninjas.com/v1/quotes');
         const data = await response.json();
         setQuote(data.content);
       } catch (error) {
