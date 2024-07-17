@@ -1,22 +1,23 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
-import Login from './components/Auth/Login';
-import SignUp from './components/Auth/SignUp';
-import TrackingScreen from './components/TrackingScreen';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Tracking from './pages/Tracking';
 
 function App() {
   return (
-    <AuthProvider>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
       <Router>
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={SignUp} />
-          <Route path="/tracking" component={TrackingScreen} />
-          <Redirect from="/" to="/login" />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/tracking" element={<Tracking />} />
+        </Routes>
       </Router>
-    </AuthProvider>
+    </GoogleOAuthProvider>
   );
 }
 
